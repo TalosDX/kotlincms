@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  http_server:
+    image: nginx:stable-alpine
+    restart: always
+    volumes:
+      - ./templates:/etc/nginx/templates
+    ports:
+      - "80:8080"
+    environment:
+      - NGINX_PORT=8080
+    depends_on:
+      - database
+      - cms
+  database:
+    image: postgres:14.2-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: cms
+      POSTGRES_USER: cmsuser
+      POSTGRES_PASSWORD: cmspassword
+    ports:
+      - "5432:5432"
+  cms:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      - database

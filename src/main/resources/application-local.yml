@@ -1,0 +1,40 @@
+spring:
+  mustache:
+    check-template-location: false
+  jpa:
+    database: postgresql
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cms?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    username: cmsuser
+    password: cmspassword
+  mail:
+    protocol: smtp
+    host: localhost
+    port: 1025
+
+
+
+#not work
+#logging:
+#  level:
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.SQL: DEBUG
+#    org.springframework.jdbc.core.JdbcTemplate: DEBUG
+#    org.springframework.jdbc.core.StatementCreatorUtils: TRACE
+
+vaadin:
+  # Launch the default browser when starting the application in development mode
+  launch-browser: true
+  # To improve the performance during development.
+  # For more information https://vaadin.com/docs/flow/spring/tutorial-spring-configuration.html#special-configuration-parameters
+  # Нет, это не массив, это строка, если передать, как массив словите +70 сек к старту приложения
+  whitelisted-packages: com/vaadin/,org/vaadin/,dev/talosdx/blogcms/
+  pnpm-enabled: true

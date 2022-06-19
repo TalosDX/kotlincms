@@ -1,0 +1,29 @@
+spring:
+  jpa:
+    database: postgresql
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  profiles:
+    active: security
+  datasource:
+    hikari:
+      maximum-pool-size: 50
+      max-lifetime: 300000
+  main:
+    banner-mode: off
+  jackson:
+    deserialization:
+      READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE: true
+  application:
+    name: "Talos Dx Blog CMS"
+  flyway:
+    enabled: true
+    baseline-description: baseline
+    baseline-version: 0.0.1
+    baseline-on-migrate: true
+
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    locations: classpath:db/migration
