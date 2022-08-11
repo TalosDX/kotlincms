@@ -4,7 +4,6 @@ plugins {
     id("org.springframework.boot") version "2.6.7"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.asciidoctor.convert") version "1.5.8"
-    id("com.vaadin") version "0.14.6.0"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
@@ -20,9 +19,6 @@ configurations {
     }
 }
 
-vaadin {
-    optimizeBundle = false
-}
 
 repositories {
     mavenCentral()
@@ -30,7 +26,6 @@ repositories {
 
 extra["snippetsDir"] = file("build/generated-snippets")
 extra["testcontainersVersion"] = "1.16.2"
-extra["vaadinVersion"] = "23.0.7"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -40,7 +35,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("com.vaadin:vaadin-spring-boot-starter")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -59,7 +53,6 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom("com.vaadin:vaadin-bom:${property("vaadinVersion")}")
         mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
     }
 }
